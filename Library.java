@@ -5,31 +5,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Library {
-	private Book book;
+
 	List<Book> bookList = new ArrayList<>();
-	HashMap<Student, List<Book>> list = new HashMap<>();
-	private Student student;
+	HashMap<Student, List<Book>> map = new HashMap<>();
 
 	public void addBooks() {
 		bookList.add(new Book("English"));
 		bookList.add(new Book("Physics"));
 	}
 
-	public void addInfo() {
+	public Book issueBook(Student student, Book book) throws Exception {
+		if (book.borrowed) {
 
-		list.put(new Student(student.getStudentName()), list.get(book.getBook()));
-	}
+			throw new Exception("Cannot issue a book which is issued");
 
-	public Book issueBook(Book book) {
-		this.book = book;
-		if (exists(book) && !book.borrowed) {
-			book.borrowed = true;
-			return book;
+		} else {
+			book.borrowed(true);
+			List<Book> booksIssuedByStudent = map.get(student);
+			if (booksIssuedByStudent == null) {
+				booksIssuedByStudent = new ArrayList<Book>();
+			}
+			booksIssuedByStudent.add(book);
+			map.put(student, booksIssuedByStudent);
 		}
-
-		return null;
-
+		return book;
 	}
 
 	public Book returnBook(Book book) {
