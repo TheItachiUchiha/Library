@@ -3,7 +3,6 @@ package hem;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 
 public class Library {
@@ -18,9 +17,10 @@ public class Library {
 
 	public void issueBook(Student student, Book book) throws Exception {
 		if (book.borrowed) {
-                       throw new Exception("Cannot issue a book which is issued");
-                  } else {
-			book.borrowed(true);
+			throw new Exception("Cannot issue a book which is issued");
+		} else {
+			book.borrowed();
+
 			List<Book> booksIssuedByStudent = map.get(student);
 			if (booksIssuedByStudent == null) {
 				booksIssuedByStudent = new ArrayList<Book>();
