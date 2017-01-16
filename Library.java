@@ -18,10 +18,8 @@ public class Library {
 
 	public Book issueBook(Student student, Book book) throws Exception {
 		if (book.borrowed) {
-
-			throw new Exception("Cannot issue a book which is issued");
-
-		} else {
+                       throw new Exception("Cannot issue a book which is issued");
+                  } else {
 			book.borrowed(true);
 			List<Book> booksIssuedByStudent = map.get(student);
 			if (booksIssuedByStudent == null) {
