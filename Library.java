@@ -16,7 +16,7 @@ public class Library {
 		bookList.add(new Book("Physics"));
 	}
 
-	public Book issueBook(Student student, Book book) throws Exception {
+	public void issueBook(Student student, Book book) throws Exception {
 		if (book.borrowed) {
                        throw new Exception("Cannot issue a book which is issued");
                   } else {
@@ -28,12 +28,12 @@ public class Library {
 			booksIssuedByStudent.add(book);
 			map.put(student, booksIssuedByStudent);
 		}
-		return book;
+		
 	}
 
-	public Book returnBook(Book book) {
+	public void returnBook(Book book) {
 		book.borrowed = false;
-		return book;
+		
 	}
 
 	public boolean exists(Book book) {
